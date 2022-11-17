@@ -1,7 +1,8 @@
 package main
 
 import (
-	"api/router"
+	"api/src/config"
+	"api/src/router"
 	"log"
 
 	"github.com/gin-gonic/gin"
@@ -9,7 +10,8 @@ import (
 
 func main() {
 	log.Println("Starting the application...")
-	setGin()
+	//setGin()
+	config.InitMySql()
 	log.Println("application UP")
 }
 

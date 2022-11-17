@@ -3,7 +3,7 @@ USER devgo
 
 DROP TABLE IF EXISTS user
 
-CREATE TABLE USER(
+CREATE TABLE user(
     id int auto_increment primary key,
     name varchar(50) not null,
     password varchar(20) not null,
