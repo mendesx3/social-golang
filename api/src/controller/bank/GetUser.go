@@ -1,7 +1,6 @@
-package user
+package bank
 
 import (
-	"api/src/repository/user"
 	"log"
 	"net/http"
 
@@ -14,6 +13,6 @@ func GetUserBy(c *gin.Context) {
 }
 
 func GetAllUser(c *gin.Context) {
-	u := user.GetAll()
-	c.JSON(http.StatusOK, u)
+	log.Println("GetAllUser")
+	c.JSON(http.StatusOK, gin.H{"success": true, "msg": "GetAllUser"})
 }

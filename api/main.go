@@ -1,7 +1,6 @@
 package main
 
 import (
-	"api/src/config"
 	"api/src/router"
 	"log"
 
@@ -10,16 +9,14 @@ import (
 
 func main() {
 	log.Println("Starting the application...")
-	//setGin()
-	config.InitMySql()
+	setGin()
+	//config.InitMySql()
 	log.Println("application UP")
 }
 
 func setGin() {
-	r := gin.New()
-	api := r.Group("")
-	gin.ForceConsoleColor()
+	r := gin.Default()
 	r.Use(gin.Logger(), gin.Recovery())
-	router.InitRoutes(api)
+	router.InitRoutes(&r.RouterGroup)
 	r.Run(":5000")
 }
