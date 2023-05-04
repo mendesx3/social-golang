@@ -11,14 +11,15 @@ func InitRoutes(r *gin.RouterGroup) {
 	API := r.Group("/api/v1")
 	initUserRouter(API)
 	initAccountBankRouter(API)
+
 }
 
 func initUserRouter(API *gin.RouterGroup) {
 	u := API.Group("/user")
 	u.POST("/", user.PostUser)
 	u.PUT("/:id", user.PutUserBy)
-	u.GET("/", user.GetAllUser)
-	u.GET("/:id", user.GetUserBy)
+	//u.GET("/", user.GetAllUser)
+	u.GET("/:id", user.GetUserById)
 	u.DELETE("/:id", user.DeleteUserBy)
 }
 

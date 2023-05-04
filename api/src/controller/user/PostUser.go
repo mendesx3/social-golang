@@ -1,21 +1,32 @@
 package user
 
 import (
+	"api/src/model"
 	"api/src/model/request"
-	"api/src/repository/user"
-	"fmt"
-	"net/http"
-
+	repo "api/src/repository/user"
 	"github.com/gin-gonic/gin"
+	"log"
+	"net/http"
 )
 
 func PostUser(c *gin.Context) {
 	var userRequest request.UserRequest
 
 	if err := c.ShouldBindJSON(&userRequest); err != nil {
-		fmt.Println(userRequest)
+		log.Println("Error PostUser: ", err.Error())
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	u := user.Create(userRequest)
-	c.JSON(http.StatusOK, u)
+
+	user := model.UserRequestToUser(userRequest)
+
+	userRepository, err := repo.NewRepositoryUser()
+	response, err := userRepository.Create(*user)
+	if err != nil {
+		log.Println("Error PostUser: ", err.Error())
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to create user"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"id": response})
 }

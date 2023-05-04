@@ -2,19 +2,12 @@ package request
 
 import "time"
 
-// user social
+// UserRequest struct UserRequest
 type UserRequest struct {
-	ID       uint64    `json:id,omitempty`
-	Name     string    `json:name,omitempty`
-	Password string    `json:password,omitempty`
-	Active   *bool     `json:active,omitempty,default:true`
-	Created  time.Time `json:created,omitempty,`
+	ID       int       `json:"id,omitempty,omitempty"`
+	Name     string    `json:"name,omitempty"`
+	Nick     string    `json:"nick,omitempty"`
+	Email    string    `json:"email,omitempty"`
+	Password string    `json:"password,omitempty"`
+	Created  time.Time `json:"created,omitempty"`
 }
-
-/*
-{
-	"id":1,
-	"name":"andre",
-	"password":"andre123"
-}
-*/
